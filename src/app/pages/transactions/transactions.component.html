@@ -5,6 +5,7 @@
     </div>
     <app-total-display></app-total-display>
     <ul>
-        <app-transaction-card></app-transaction-card>
+        <app-transaction-card *ng-for="let transation of transactionList"
+            [transaction]="transation"></app-transaction-card>
     </ul>
 </main>
