@@ -1,10 +1,10 @@
 <li>
     <div>
-        <span>{{transaction.value}}</span>
+        <span>{{valueToMoney()}}</span>
         <p>{{transaction.description}}</p>
     </div>
     <div>
         <span>{{transaction.type}}</span>
-        <button>Remover transação</button>
+        <button (click)="deleteTransaction()">Remover transação</button>
     </div>
 </li>

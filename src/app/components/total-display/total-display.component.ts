@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TransactionService } from '../../services/transaction.service';
 
 @Component({
   selector: 'app-total-display',
@@ -8,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './total-display.component.sass'
 })
 export class TotalDisplayComponent {
+  constructor(private transactionService: TransactionService) { }
 
+  public get total() {
+    return this.transactionService.getTotalTransactionsValue();
+  }
 }
