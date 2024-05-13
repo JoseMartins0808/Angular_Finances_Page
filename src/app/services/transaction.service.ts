@@ -29,20 +29,12 @@ export class TransactionService {
 
     public addTransaction(formData: ICreateTransaction) {
 
-        // const newId: String = crypto.randomUUID().toString();
-
         const newTransaction: ITransaction = { ...formData, id: crypto.randomUUID().toString() };
-
         this.transactionList.update((oldTransactionList) => [...oldTransactionList, newTransaction]);
     }
 
     public removeTransaction(transactionId: string) {
 
-        this.transactionList.update((ola) => {
-            console.log(ola);
-            return ola.filter(transactionToDelete => transactionToDelete.id !== transactionId)
-        });
-
-        // this.transactionList.update((transactionList) => transactionList.filter(transactionToDelete => transactionToDelete.id !== transactionId));
+        this.transactionList.update((transactionList) => transactionList.filter(transactionToDelete => transactionToDelete.id !== transactionId));
     }
 }
