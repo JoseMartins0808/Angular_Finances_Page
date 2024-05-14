@@ -1,0 +1,32 @@
+%field-props
+    width: 100%
+    background: $color-gray
+    font-family: $font-family
+    font-size: .875rem
+    font-weight: 400
+    color: $color-black
+    
+.field-box
+    width: 100%
+
+    label
+        font-family: $font-family
+        font-size: .875rem
+        margin-bottom: 8px
+        font-weight: 700 
+
+    input
+        @extend %field-props
+        padding: 0 20px
+        height: 2.875rem
+
+    select
+        @extend %field-props
+        padding: 0 20px
+        height: 2.875rem
+
+    textarea
+        @extend %field-props
+        resize: none
+        padding: 15px 20px
+        height: 6.8125rem
