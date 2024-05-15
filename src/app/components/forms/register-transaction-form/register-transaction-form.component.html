@@ -1,14 +1,16 @@
-<form (submit)="onSubmit($event)">
-    <div class="field-box">
-        <label for="value">Valor</label>
-        <input name="value" placeholder="R$" type="number" [formControl]="value">
-    </div>
-    <div class="field-box">
-        <label for="type">Tipo</label>
-        <select name="type" [formControl]="type">
-            <option value="input">Entrada</option>
-            <option value="output">Saída</option>
-        </select>
+<form (submit)="onSubmit($event)" class="form">
+    <div class="flex-box">
+        <div class="field-box">
+            <label for="value">Valor</label>
+            <input name="value" placeholder="R$" type="number" [formControl]="value">
+        </div>
+        <div class="field-box">
+            <label for="type">Tipo</label>
+            <select name="type" [formControl]="type">
+                <option value="input">Entrada</option>
+                <option value="output">Saída</option>
+            </select>
+        </div>
     </div>
     <div class="field-box">
         <label for="description">Descrição</label>
