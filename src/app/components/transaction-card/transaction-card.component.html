@@ -5,7 +5,8 @@
         <p class="paragraph">{{transaction.description}}</p>
     </div>
     <div>
-        <span class="paragraph">{{transaction.type}}</span>
+        <span *ngIf="transaction.type === 'input'" class="paragraph">Entrada/Receita</span>
+        <span *ngIf="transaction.type === 'output'" class="paragraph">Saída/Despesa</span>
         <button (click)="deleteTransaction()">
             <span class="material-symbols-outlined">
                 delete

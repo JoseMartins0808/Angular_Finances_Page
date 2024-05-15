@@ -5,7 +5,10 @@
 
     font-family: $font-family
     font-weight: 700
-    font-size: 1.125rem
+    font-size: clamp(.9375rem, 2vw, 1.0625rem)
+
+    text-align: center
+    line-height: 1.4
 
     transition: .4s
 
@@ -21,7 +24,7 @@
         height: 3.625rem
 
     &.lg
-        padding: 0 30px
+        padding: 0 clamp(20px, 2vw, 30px)
         height: 4.8125rem
 
     &.full
