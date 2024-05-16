@@ -14,4 +14,14 @@ export class TotalDisplayComponent {
   public get total() {
     return this.transactionService.getTotalTransactionsValue();
   }
+
+  public positiveOrNegative() {
+
+    if (this.total >= 0)
+      return "money blue";
+
+    else
+      return "money red";
+
+  }
 }
