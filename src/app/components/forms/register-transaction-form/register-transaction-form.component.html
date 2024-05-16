@@ -1,8 +1,9 @@
 <form (submit)="onSubmit($event)" class="form">
     <div class="flex-box">
-        <div class="field-box">
+        <div class="field-box error">
             <label for="value">Valor</label>
             <input name="value" placeholder="R$" type="number" [formControl]="value">
+            <app-error>O valor é obrigatório</app-error>
         </div>
         <div class="field-box">
             <label for="type">Tipo</label>
@@ -15,6 +16,7 @@
     <div class="field-box">
         <label for="description">Descrição</label>
         <textarea name="description" placeholder="Digite a descrição" [formControl]="description"></textarea>
+        <app-error>A descrição é obrigatória</app-error>
     </div>
     <button type="submit" class="btn solid md">Cadastrar</button>
 </form>

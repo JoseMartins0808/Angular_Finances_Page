@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TransactionService } from '../../../services/transaction.service';
+import { CommonModule } from '@angular/common';
+import { ErrorComponent } from '../../../error/error/error.component';
 
 @Component({
   selector: 'app-register-transaction-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ErrorComponent],
   templateUrl: './register-transaction-form.component.html',
   styleUrl: './register-transaction-form.component.sass'
 })
