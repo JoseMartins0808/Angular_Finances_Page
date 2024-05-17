@@ -16,24 +16,30 @@ export class RegisterTransactionFormComponent {
 
   constructor(private readonly transactionService: TransactionService) { }
 
+  // public disableSubmit: "true" | "false" = "true";
+
   public financesForm = new FormGroup({
     value: new FormControl<string>("", [Validators.required]),
     type: new FormControl<"input" | "output">("input"),
-    description: new FormControl<string>("", [Validators.required, Validators.minLength(10)])
+    description: new FormControl<string>("", [Validators.required, Validators.minLength(5)])
   });
 
   public get errors() {
+
+    // if (this.financesForm.valid === true) {
+    //   console.log("FALSE!")
+    //   this.disableSubmit === "false";
+    // }
+    // console.log(this.financesForm.valid)
+
     return {
       value: this.financesForm.get("value")?.errors,
       description: this.financesForm.get("description")?.errors
     }
   }
 
-  public onSubmit(event: Event) {
+  public onSubmit(event: Event): void {
     event.preventDefault();
-
-    console.log(this.financesForm.get("value")?.value);
-    console.log(this.financesForm.get("description")?.value);
 
     const newData = {
       value: this.financesForm.get("value")?.value as string,
@@ -42,7 +48,19 @@ export class RegisterTransactionFormComponent {
     }
 
     this.transactionService.addTransaction(newData);
+    // if (this.financesForm.valid === true) {
+    //   this.disableSubmit = "false";
+    //   console.log("ok")
+    // } else {
+    //   alert("Preencha os campos!")
+    // }
+  }
 
-
+  public handleDisableButton(): boolean {
+    if (this.financesForm.valid) {
+      return false;
+    } else {
+      return true;
+    }
   }
 }
