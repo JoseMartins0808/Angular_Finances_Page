@@ -26,12 +26,6 @@ export class RegisterTransactionFormComponent {
 
   public get errors() {
 
-    // if (this.financesForm.valid === true) {
-    //   console.log("FALSE!")
-    //   this.disableSubmit === "false";
-    // }
-    // console.log(this.financesForm.valid)
-
     return {
       value: this.financesForm.get("value")?.errors,
       description: this.financesForm.get("description")?.errors
@@ -48,12 +42,6 @@ export class RegisterTransactionFormComponent {
     }
 
     this.transactionService.addTransaction(newData);
-    // if (this.financesForm.valid === true) {
-    //   this.disableSubmit = "false";
-    //   console.log("ok")
-    // } else {
-    //   alert("Preencha os campos!")
-    // }
   }
 
   public handleDisableButton(): boolean {
@@ -61,6 +49,14 @@ export class RegisterTransactionFormComponent {
       return false;
     } else {
       return true;
+    }
+  }
+
+  public handleDisableButtonStyle(): string {
+    if (this.financesForm.valid) {
+      return "btn solid md";
+    } else {
+      return "btn disabled md";
     }
   }
 }

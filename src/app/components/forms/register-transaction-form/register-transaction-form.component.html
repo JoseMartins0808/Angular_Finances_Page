@@ -1,7 +1,8 @@
 <form (submit)="onSubmit($event)" class="form" [formGroup]="financesForm">
 
     <div class="flex-box">
-        <app-field-box style="width: 100%;" [error]="errors.value">
+        <app-field-box style="width: 100%;"
+            [error]="(financesForm.get('value')?.dirty || financesForm.get('value')?.touched) ? errors.value : null">
             <label for="value">Valor</label>
             <input name="value" placeholder="R$" type="number" formControlName="value">
             <app-error style="position: relative;"
@@ -16,7 +17,8 @@
             </select>
         </div>
     </div>
-    <app-field-box style="width: 100%;" [error]="errors.description">
+    <app-field-box style="width: 100%;"
+        [error]="(financesForm.get('description')?.dirty || financesForm.get('description')?.touched) ? errors.description : null">
         <label for="description">Descrição</label>
         <textarea name="description" placeholder="Digite a descrição" formControlName="description"></textarea>
         <app-error style="position: relative;"
@@ -26,7 +28,7 @@
             *ngIf="errors?.description?.['minlength'] && (financesForm.get('description')?.dirty || financesForm.get('description')?.touched)">
             Mínimo 5 caracteres</app-error>
     </app-field-box>
-    <button type="submit" class="btn solid md" [disabled]="handleDisableButton()">Cadastrar</button>
+    <button type="submit" [class]="handleDisableButtonStyle()" [disabled]="handleDisableButton()">Cadastrar</button>
 </form>
 <!-- <div role="dialog" *ngIf="modal === 'value'">
     O valor da transação deve ser informado<span (click)="closeModal()">fechar</span>
