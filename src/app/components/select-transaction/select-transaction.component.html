@@ -1,0 +1,18 @@
+<label for="select-id" class="select-label">Transação</label>
+<div role="select" class="select-bar" id="select-id">
+    <div class="select-btn" (click)="toggleSelectDropDown()">
+        <span>Selecione uma transação</span>
+        <!-- <span class="material-symbols-outlined">
+            stat_1
+        </span> -->
+        <span class="material-symbols-outlined">
+            stat_minus_1
+        </span>
+    </div>
+    <div [class]="openedSelectMenu">
+        <input type="text">
+        <ul class="options">
+            <li *ngFor="let option of transactionOptions">{{option.select}}</li>
+        </ul>
+    </div>
+</div>

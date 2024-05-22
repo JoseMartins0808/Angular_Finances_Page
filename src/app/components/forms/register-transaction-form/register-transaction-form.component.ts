@@ -4,19 +4,18 @@ import { TransactionService } from '../../../services/transaction.service';
 import { CommonModule } from '@angular/common';
 import { ErrorComponent } from '../../../error/error/error.component';
 import { FieldBoxComponent } from '../field-box/field-box.component';
+import { SelectTransactionComponent } from '../../select-transaction/select-transaction.component';
 
 @Component({
   selector: 'app-register-transaction-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FieldBoxComponent, ErrorComponent],
+  imports: [CommonModule, ReactiveFormsModule, FieldBoxComponent, ErrorComponent, SelectTransactionComponent],
   templateUrl: './register-transaction-form.component.html',
   styleUrl: './register-transaction-form.component.sass'
 })
 export class RegisterTransactionFormComponent {
 
   constructor(private readonly transactionService: TransactionService) { }
-
-  // public disableSubmit: "true" | "false" = "true";
 
   public financesForm = new FormGroup({
     value: new FormControl<string>("", [Validators.required]),

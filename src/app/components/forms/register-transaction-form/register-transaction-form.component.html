@@ -1,6 +1,14 @@
 <form (submit)="onSubmit($event)" class="form" [formGroup]="financesForm">
 
     <div class="flex-box">
+        <app-select-transaction style="width: 100%;"></app-select-transaction>
+        <div class="field-box">
+            <label for="type">Tipo</label>
+            <select name="type" formControlName="type">
+                <option value="input">Entrada</option>
+                <option value="output">Saída</option>
+            </select>
+        </div>
         <app-field-box style="width: 100%;"
             [error]="(financesForm.get('value')?.dirty || financesForm.get('value')?.touched) ? errors.value : null">
             <label for="value">Valor</label>
@@ -9,13 +17,6 @@
                 *ngIf="errors?.value?.['required'] && (financesForm.get('value')?.dirty || financesForm.get('value')?.touched)">
                 O valor é obrigatório</app-error>
         </app-field-box>
-        <div class="field-box">
-            <label for="type">Tipo</label>
-            <select name="type" formControlName="type">
-                <option value="input">Entrada</option>
-                <option value="output">Saída</option>
-            </select>
-        </div>
     </div>
     <app-field-box style="width: 100%;"
         [error]="(financesForm.get('description')?.dirty || financesForm.get('description')?.touched) ? errors.description : null">
@@ -28,14 +29,6 @@
             *ngIf="errors?.description?.['minlength'] && (financesForm.get('description')?.dirty || financesForm.get('description')?.touched)">
             Mínimo 5 caracteres</app-error>
     </app-field-box>
+
     <button type="submit" [class]="handleDisableButtonStyle()" [disabled]="handleDisableButton()">Cadastrar</button>
 </form>
-<!-- <div role="dialog" *ngIf="modal === 'value'">
-    O valor da transação deve ser informado<span (click)="closeModal()">fechar</span>
-</div>
-<dialog open="true" *ngIf="modal === 'description'">A descrição da transação deve ser informada
-    <span (click)="closeModal()">fechar</span>
-</dialog>
-<dialog open="true" *ngIf="modal === 'both'">A descrição e o valor da transação devem ser informados
-    <span (click)="closeModal()">fechar</span>
-</dialog> -->
