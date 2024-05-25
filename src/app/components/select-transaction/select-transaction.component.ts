@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { transactionList } from "../../utils/transactions.utils";
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { IChoseTransaction, transactionList } from "../../utils/transactions.utils";
 
 @Component({
   selector: 'app-select-transaction',
@@ -10,16 +10,22 @@ import { transactionList } from "../../utils/transactions.utils";
   styleUrl: './select-transaction.component.sass'
 })
 export class SelectTransactionComponent {
+  @ViewChild("transactionInput") transactionSearch!: ElementRef;
 
-  @Input() transactionOptions = transactionList;
+  @Input() transactionOptions: IChoseTransaction[] = transactionList;
 
-  public openedSelectMenu: "select-content" | "select-content active" = "select-content";
+  public openedSelectMenu: boolean = false;
 
-  public toggleSelectDropDown() {
-    if (this.openedSelectMenu === "select-content") {
-      this.openedSelectMenu = "select-content active";
-    } else {
-      this.openedSelectMenu = "select-content";
-    }
+  public toggleSelectDropDown(): void {
+    this.openedSelectMenu = !this.openedSelectMenu;
+  }
+
+  private filterFields() {
+    const filterArray = Array.from(transactionList).filter((transaction) =>
+      transaction.select.toLocaleLowerCase().includes(
+        this.transactionSearch.nativeElement.value.toLocaleLowerCase()
+      ));
+
+    this.transactionOptions = filterArray;
   }
 }
