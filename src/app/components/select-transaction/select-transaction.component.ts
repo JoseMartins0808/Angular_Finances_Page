@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
 import { IChoseTransaction, transactionList } from "../../utils/transactions.utils";
+import { OptionTransactionComponent } from '../option-transaction/option-transaction.component';
 
 @Component({
   selector: 'app-select-transaction',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, OptionTransactionComponent],
   templateUrl: './select-transaction.component.html',
   styleUrl: './select-transaction.component.sass'
 })
@@ -16,16 +17,24 @@ export class SelectTransactionComponent {
 
   public openedSelectMenu: boolean = false;
 
+  public searchWord: string | null = null;
+
   public toggleSelectDropDown(): void {
     this.openedSelectMenu = !this.openedSelectMenu;
   }
 
-  private filterFields() {
+  public filterFields() {
+
+    this.searchWord = this.transactionSearch.nativeElement.value.toLocaleLowerCase();
+
     const filterArray = Array.from(transactionList).filter((transaction) =>
       transaction.select.toLocaleLowerCase().includes(
-        this.transactionSearch.nativeElement.value.toLocaleLowerCase()
+        this.searchWord!
       ));
 
     this.transactionOptions = filterArray;
+
+    console.log(this.transactionOptions)
   }
+
 }

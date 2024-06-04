@@ -9,16 +9,11 @@
             stat_minus_1
         </span>
     </div>
-    <!-- <div [class]="openedSelectMenu">
-        <input type="text">
-        <ul class="options">
-            <li *ngFor="let option of transactionOptions">{{option.select}}</li>
-        </ul>
-    </div> -->
     <div class="select-content" *ngIf="openedSelectMenu">
-        <input type="text" (keyup)="filterFields()">
+        <input type="text" #transactionInput (keyup)="filterFields()">
         <ul class="options">
-            <li *ngFor="let option of transactionOptions">{{option.select}}</li>
+            <app-option-transaction style="width: 100%;" *ngFor="let option of transactionOptions"
+                [option]="option.select" [optionType]="option.type"></app-option-transaction>
         </ul>
     </div>
 </div>
