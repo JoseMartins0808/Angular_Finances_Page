@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, Renderer2, ViewChild } from '@angular/core';
 import { IChoseTransaction, transactionList } from "../../utils/transactions.utils";
 import { OptionTransactionComponent } from '../option-transaction/option-transaction.component';
 
@@ -11,7 +11,29 @@ import { OptionTransactionComponent } from '../option-transaction/option-transac
   styleUrl: './select-transaction.component.sass'
 })
 export class SelectTransactionComponent {
-  @ViewChild("transactionInput") transactionSearch!: ElementRef;
+
+  @ViewChild("selectContent") transactionSearch!: ElementRef;
+
+  constructor(private renderer: Renderer2) {
+
+    let count: number = 0;
+
+    this.renderer.listen("window", "click", (e: Event) => {
+
+      if (this.openedSelectMenu === true) {
+        if (!this.transactionSearch.nativeElement.contains(e.target)) {
+          count = count + 1;
+          console.log("FORA! " + count);
+
+          if (count === 2) {
+            this.openedSelectMenu = false;
+            count = 0;
+          }
+        }
+      }
+    });
+  }
+
 
   @Input() transactionOptions: IChoseTransaction[] = transactionList;
 

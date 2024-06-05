@@ -9,7 +9,7 @@
             stat_minus_1
         </span>
     </div>
-    <div class="select-content" *ngIf="openedSelectMenu">
+    <div class="select-content" *ngIf="openedSelectMenu" #selectContent>
         <input type="text" #transactionInput (keyup)="filterFields()">
         <ul class="options">
             <app-option-transaction style="width: 100%;" *ngFor="let option of transactionOptions"
