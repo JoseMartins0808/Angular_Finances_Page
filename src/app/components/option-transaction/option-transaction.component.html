@@ -1,6 +1,12 @@
-<li *ngIf="optionType === 'input'">
-    <span class="input">R </span>{{option}}
+<li *ngIf="option.type === 'input'" (click)="setOptionChoiced(option)">
+    <span class="input">R </span>
+    <span>{{option.select}}</span>
+    <span class="searchString">{{searchString}}</span>
+    <span *ngIf="lastString !== ''">{{lastString}}</span>
 </li>
-<li *ngIf="optionType === 'output'">
-    <span class="output">D </span>{{option}}
+<li *ngIf="option.type === 'output'" (click)="setOptionChoiced(option)">
+    <span class=" output">D </span>
+    <span *ngIf="firstString !== ''">{{firstString}}</span>
+    <span class="searchString">{{searchString}}</span>
+    <span *ngIf="lastString !== ''">{{lastString}}</span>
 </li>

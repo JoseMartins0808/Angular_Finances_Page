@@ -1,6 +1,6 @@
 <label for="select-id" class="select-label">Transação</label>
 <div role="select" class="select-bar" id="select-id">
-    <div class="select-btn" (click)="toggleSelectDropDown()">
+    <div class="select-btn" (click)="!openedSelectMenu ? toggleSelectDropDown() : null">
         <span>Selecione uma transação</span>
         <span class="material-symbols-outlined" *ngIf="openedSelectMenu">
             stat_1
@@ -12,8 +12,8 @@
     <div class="select-content" *ngIf="openedSelectMenu" #selectContent>
         <input type="text" #transactionInput (keyup)="filterFields()">
         <ul class="options">
-            <app-option-transaction style="width: 100%;" *ngFor="let option of transactionOptions"
-                [option]="option.select" [optionType]="option.type"></app-option-transaction>
+            <app-option-transaction style="width: 100%;" *ngFor="let option of transactionOptions" [option]="option"
+                [searchString]="searchWord"></app-option-transaction>
         </ul>
     </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TransactionService } from '../../../services/transaction.service';
 import { CommonModule } from '@angular/common';
@@ -14,6 +14,8 @@ import { SelectTransactionComponent } from '../../select-transaction/select-tran
   styleUrl: './register-transaction-form.component.sass'
 })
 export class RegisterTransactionFormComponent {
+
+  @ViewChild("textArea") textArea!: ElementRef;
 
   constructor(private readonly transactionService: TransactionService) { }
 
