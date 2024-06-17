@@ -4,6 +4,12 @@ export interface IChoseTransaction {
     description: string;
 };
 
+export interface IChoseSearchTransaction extends IChoseTransaction {
+    firstString: String;
+    searchString: String;
+    lastString: String;
+}
+
 export const transactionList: IChoseTransaction[] = [
     {
         select: "Água",

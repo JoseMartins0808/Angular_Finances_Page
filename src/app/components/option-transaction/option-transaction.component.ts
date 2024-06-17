@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { IChoseTransaction } from '../../utils/transactions.utils';
+import { IChoseSearchTransaction, IChoseTransaction } from '../../utils/transactions.utils';
 import { RegisterTransactionFormComponent } from '../forms/register-transaction-form/register-transaction-form.component';
 import { SelectTransactionComponent } from '../select-transaction/select-transaction.component';
 
@@ -13,43 +13,13 @@ import { SelectTransactionComponent } from '../select-transaction/select-transac
 })
 export class OptionTransactionComponent {
 
-  @Input() option!: IChoseTransaction;
+  @Input() option!: IChoseSearchTransaction | IChoseTransaction;
   @Input() searchString!: String | null;
 
-  public firstString: String = "";
+  public firstString: String | null = this.option.;
   public lastString: String = "";
 
-  constructor(private registerTransaction: RegisterTransactionFormComponent,
-    selectTransaction: SelectTransactionComponent
-  ) {
-
-    this.searchString = selectTransaction.searchWord!;
-
-    if (this.searchString !== null) {
-      if (this.searchString[0].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "") ===
-        this.option.select[0].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "") &&
-        this.searchString[1].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "") ===
-        this.option.select[1].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "")) {
-
-        this.lastString = this.option.select.slice(this.searchString.length, this.option.select.length);
-      }
-    }
-
-
-    // if (searchWord[0] === option[0] && searchWord[1] === option[1]) {
-    //   lastString = option.slice(searchWord.length, option.length);
-
-    // } else {
-    //     for (let index = 0; index < option.length; index++) {
-    //         if (searchWord[0] === option[index] && searchWord[1] === option[index + 1] && searchWord[2] === option[index + 2]) {
-
-    //             firstString = option.slice(0, index);
-    //             lastString = option.slice(index + searchWord.length, option.length);
-    //         }
-    //     }
-    // }
-  }
-
+  constructor(private registerTransaction: RegisterTransactionFormComponent) { }
 
   public optionChosen: IChoseTransaction = {
     description: "",
