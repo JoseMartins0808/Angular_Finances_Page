@@ -12,9 +12,23 @@ import { OptionTransactionComponent } from '../option-transaction/option-transac
 })
 export class SelectTransactionComponent {
 
+  private getSearchTransactionList(): IChoseSearchTransaction[] {
+    let searchTransactionList: IChoseSearchTransaction[] = [];
+
+    transactionList.map((option) => {
+      searchTransactionList.push({
+        ...option,
+        firstString: "",
+        searchString: "",
+        lastString: ""
+      });
+    });
+    return searchTransactionList;
+  };
+
   @ViewChild("transactionInput") transactionSearch!: ElementRef;
   @ViewChild("selectContent") transactionMenu!: ElementRef;
-  @Input() transactionOptions: IChoseTransaction[] | IChoseSearchTransaction[] = transactionList;
+  @Input() transactionOptions = this.getSearchTransactionList();
 
 
   constructor(private renderer: Renderer2) {
@@ -46,6 +60,7 @@ export class SelectTransactionComponent {
   }
 
   public filterFields(): void {
+    let searchTransactionList: IChoseSearchTransaction[] = [];
 
     this.searchWord = this.transactionSearch.nativeElement.value.toLocaleLowerCase()
       .normalize("NFD").replace(/[^a-zA-Z\s]/g, "");
@@ -54,34 +69,45 @@ export class SelectTransactionComponent {
       transaction.select.toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "")
         .includes(this.searchWord!.normalize("NFD").replace(/[^a-zA-Z\s]/g, "")));
 
-    let filterSearchArray: IChoseSearchTransaction[] = [];
-
     filterArray.map((option) => {
       let firstString: String = "";
       let lastString: String = "";
-      let searchOption: IChoseSearchTransaction;
 
       if (this.searchWord!.length > 1) {
-        if (this.searchWord![0] === option.select[0] && this.searchWord![1] === option.select[1]) {
-          firstString = "";
+        if (this.searchWord![0] === option.select[0].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "") && this.searchWord![1] === option.select[1].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "")) {
           lastString = option.select.slice(this.searchWord!.length, option.select.length);
         } else {
           for (let index: number = 0; index < option.select.length; index++) {
-            if (this.searchWord![0] === option.select[index] && this.searchWord![1] === option.select[index + 1] && this.searchWord![2] === option.select[index + 2]) {
+            if (this.searchWord![0] === option.select[index].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "") && this.searchWord![1] === option.select[index + 1].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "") && this.searchWord![2] === option.select[index + 2].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "")) {
               firstString = option.select.slice(0, index);
               lastString = option.select.slice(index + this.searchWord!.length, option.select.length);
             }
           }
         }
+      } else if (this.searchWord!.length === 1) {
+        if (option.select[0].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "") === this.searchWord![0]) {
+          lastString = option.select.slice(1, option.select.length);
+        } else {
+          for (let index: number = 0; index < option.select.length; index++) {
+            firstString = option.select.slice(0, index);
+            lastString = option.select.slice(index + 1, option.select.length);
+          }
+        }
+        lastString = option.select.slice(1, option.select.length);
+      } else {
+        lastString = "";
       }
-      searchOption = {
+
+      const searchedOption: IChoseSearchTransaction = {
         ...option,
-        firstString,
-        lastString,
-        searchString: this.searchWord!
-      };
-      filterSearchArray.push(searchOption);
+        firstString: firstString,
+        searchString: this.searchWord!,
+        lastString: lastString
+      }
+
+      searchTransactionList.push(searchedOption);
     });
-    this.transactionOptions = filterSearchArray;
+
+    this.transactionOptions = searchTransactionList;
   }
 }

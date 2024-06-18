@@ -13,11 +13,7 @@ import { SelectTransactionComponent } from '../select-transaction/select-transac
 })
 export class OptionTransactionComponent {
 
-  @Input() option!: IChoseSearchTransaction | IChoseTransaction;
-  @Input() searchString!: String | null;
-
-  public firstString: String | null = this.option.;
-  public lastString: String = "";
+  @Input() option!: IChoseSearchTransaction;
 
   constructor(private registerTransaction: RegisterTransactionFormComponent) { }
 
@@ -28,6 +24,8 @@ export class OptionTransactionComponent {
   };
 
   public setOptionChoiced(optionChoiced: IChoseTransaction) {
+    console.log(this.option);
+
     this.optionChosen = optionChoiced;
 
     this.registerTransaction.textArea.nativeElement.value = optionChoiced.description;

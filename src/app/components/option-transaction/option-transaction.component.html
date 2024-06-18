@@ -2,8 +2,8 @@
     <span class="input">R </span>
     <span *ngIf="option.firstString !== '' && option.firstString !== null">{{option.firstString}}</span>
     <span *ngIf="option.searchString !== null" class="searchString">{{option.searchString}}</span>
-    <span *ngIf="lastString !== '' && lastString !== null">{{option.lastString}}</span>
-    <span *ngIf="option.searchString === null">{{option.select}}</span>
+    <span *ngIf="option.lastString !== '' && option.lastString !== null">{{option.lastString}}</span>
+    <span *ngIf="option.searchString === ''">{{option.select}}</span>
 </li>
 <li *ngIf="option.type === 'output'" (click)="setOptionChoiced(option)">
     <span class=" output">D </span>

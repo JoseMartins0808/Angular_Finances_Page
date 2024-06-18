@@ -12,8 +12,8 @@
     <div class="select-content" *ngIf="openedSelectMenu" #selectContent>
         <input type="text" #transactionInput (keyup)="filterFields()">
         <ul class="options">
-            <app-option-transaction style="width: 100%;" *ngFor="let option of transactionOptions" [option]="option"
-                [searchString]="searchWord"></app-option-transaction>
+            <app-option-transaction style="width: 100%;" *ngFor="let option of transactionOptions"
+                [option]="option"></app-option-transaction>
         </ul>
     </div>
 </div>
