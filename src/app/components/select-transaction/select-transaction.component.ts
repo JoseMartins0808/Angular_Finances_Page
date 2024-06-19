@@ -74,26 +74,40 @@ export class SelectTransactionComponent {
       let lastString: String = "";
 
       if (this.searchWord!.length > 1) {
+
         if (this.searchWord![0] === option.select[0].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "") && this.searchWord![1] === option.select[1].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "")) {
           lastString = option.select.slice(this.searchWord!.length, option.select.length);
+
         } else {
           for (let index: number = 0; index < option.select.length; index++) {
+
             if (this.searchWord![0] === option.select[index].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "") && this.searchWord![1] === option.select[index + 1].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "") && this.searchWord![2] === option.select[index + 2].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "")) {
               firstString = option.select.slice(0, index);
               lastString = option.select.slice(index + this.searchWord!.length, option.select.length);
+              break;
+
+            } else if (this.searchWord!.length === 2 && this.searchWord![0] === option.select[index].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "") && this.searchWord![1] === option.select[index + 1].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "")) {
+              firstString = option.select.slice(0, index);
+              lastString = option.select.slice(index + this.searchWord!.length, option.select.length);
+              break;
             }
           }
         }
       } else if (this.searchWord!.length === 1) {
+
         if (option.select[0].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "") === this.searchWord![0]) {
           lastString = option.select.slice(1, option.select.length);
+
         } else {
           for (let index: number = 0; index < option.select.length; index++) {
-            firstString = option.select.slice(0, index);
-            lastString = option.select.slice(index + 1, option.select.length);
+
+            if (this.searchWord![0] === option.select[index].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "")) {
+              firstString = option.select.slice(0, index);
+              lastString = option.select.slice(index + 1, option.select.length);
+              break;
+            }
           }
         }
-        lastString = option.select.slice(1, option.select.length);
       } else {
         lastString = "";
       }
