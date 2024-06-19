@@ -71,52 +71,65 @@ export class SelectTransactionComponent {
 
     filterArray.map((option) => {
       let firstString: String = "";
+      let searchString: String = "";
       let lastString: String = "";
 
       if (this.searchWord!.length > 1) {
 
         if (this.searchWord![0] === option.select[0].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "") && this.searchWord![1] === option.select[1].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "")) {
           lastString = option.select.slice(this.searchWord!.length, option.select.length);
+          searchString = option.select.slice(0, this.searchWord!.length);
+
+        } else if (this.searchWord!.length === 2 && this.searchWord![0] === option.select[option.select.length - 2].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "") && this.searchWord![1] === option.select[option.select.length - 1].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "")) {
+          firstString = option.select.slice(0, option.select.length - 2);
+          searchString = option.select.slice(option.select.length - 2, option.select.length);
 
         } else {
           for (let index: number = 0; index < option.select.length; index++) {
 
             if (this.searchWord![0] === option.select[index].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "") && this.searchWord![1] === option.select[index + 1].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "") && this.searchWord![2] === option.select[index + 2].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "")) {
               firstString = option.select.slice(0, index);
+              searchString = option.select.slice(index, index + this.searchWord!.length);
               lastString = option.select.slice(index + this.searchWord!.length, option.select.length);
               break;
 
             } else if (this.searchWord!.length === 2 && this.searchWord![0] === option.select[index].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "") && this.searchWord![1] === option.select[index + 1].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "")) {
               firstString = option.select.slice(0, index);
+              searchString = option.select.slice(index, index + this.searchWord!.length);
               lastString = option.select.slice(index + this.searchWord!.length, option.select.length);
               break;
             }
           }
         }
+
       } else if (this.searchWord!.length === 1) {
 
         if (option.select[0].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "") === this.searchWord![0]) {
           lastString = option.select.slice(1, option.select.length);
+          searchString = option.select.slice(0, 1);
 
         } else {
           for (let index: number = 0; index < option.select.length; index++) {
 
             if (this.searchWord![0] === option.select[index].toLocaleLowerCase().normalize("NFD").replace(/[^a-zA-Z\s]/g, "")) {
               firstString = option.select.slice(0, index);
+              searchString = option.select.slice(index, index + 1);
               lastString = option.select.slice(index + 1, option.select.length);
               break;
             }
           }
         }
+
       } else {
         lastString = "";
       }
 
       const searchedOption: IChoseSearchTransaction = {
         ...option,
-        firstString: firstString,
-        searchString: this.searchWord!,
-        lastString: lastString
+        firstString,
+        // searchString: this.searchWord!,
+        searchString,
+        lastString
       }
 
       searchTransactionList.push(searchedOption);
