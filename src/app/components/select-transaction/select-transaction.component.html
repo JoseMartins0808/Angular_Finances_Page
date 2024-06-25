@@ -1,7 +1,7 @@
 <label for="select-id" class="select-label">Transação</label>
 <div role="select" class="select-bar" id="select-id">
     <div class="select-btn" (click)="!openedSelectMenu ? toggleSelectDropDown() : null">
-        <span>Selecione uma transação</span>
+        <span>{{selectedItem}}</span>
         <span class="material-symbols-outlined" *ngIf="openedSelectMenu">
             stat_1
         </span>

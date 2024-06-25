@@ -16,12 +16,15 @@ import { SelectTransactionComponent } from '../../select-transaction/select-tran
 export class RegisterTransactionFormComponent {
 
   @ViewChild("textArea") textArea!: ElementRef;
+  @ViewChild("transactionType") transactionType!: ElementRef;
+
+  public transactionSelect: "input" | "output" = "input";
+  public openedTypeMenu: boolean = false;
 
   constructor(private readonly transactionService: TransactionService) { }
 
   public financesForm = new FormGroup({
     value: new FormControl<string>("", [Validators.required]),
-    type: new FormControl<"input" | "output">("input"),
     description: new FormControl<string>("", [Validators.required, Validators.minLength(5)])
   });
 
@@ -38,7 +41,7 @@ export class RegisterTransactionFormComponent {
 
     const newData = {
       value: this.financesForm.get("value")?.value as string,
-      type: this.financesForm.get("type")?.value as "input" | "output",
+      type: this.transactionSelect,
       description: this.financesForm.get("description")?.value as string
     }
 
@@ -46,18 +49,26 @@ export class RegisterTransactionFormComponent {
   }
 
   public handleDisableButton(): boolean {
-    if (this.financesForm.valid) {
-      return false;
-    } else {
-      return true;
-    }
+    return this.financesForm.valid ? false : true;
   }
 
-  public handleDisableButtonStyle(): string {
-    if (this.financesForm.valid) {
-      return "btn solid md";
-    } else {
-      return "btn disabled md";
-    }
+  public handleDisableButtonStyle(): "btn disabled md" | "btn solid md" {
+    return this.financesForm.valid ? "btn solid md" : "btn disabled md";
+  }
+
+  public toggleOpenTypeMenu(): void {
+    this.openedTypeMenu === true ? this.openedTypeMenu = false : this.openedTypeMenu = true;
+  }
+
+  public handleChangeTypeMenu(): "Entrada" | "Saída" {
+    return this.transactionSelect === "input" ? "Entrada" : "Saída";
+  }
+
+  public setInputTransaction(): void {
+    this.transactionSelect = "input";
+  }
+
+  public setOutputTransaction(): void {
+    this.transactionSelect = "output";
   }
 }

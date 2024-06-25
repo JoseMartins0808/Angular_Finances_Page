@@ -15,7 +15,9 @@ export class OptionTransactionComponent {
 
   @Input() option!: IChoseSearchTransaction;
 
-  constructor(private registerTransaction: RegisterTransactionFormComponent) { }
+  constructor(private registerTransaction: RegisterTransactionFormComponent,
+    private selectTransactionComponent: SelectTransactionComponent
+  ) { }
 
   public optionChosen: IChoseTransaction = {
     description: "",
@@ -24,12 +26,22 @@ export class OptionTransactionComponent {
   };
 
   public setOptionChoiced(optionChoiced: IChoseTransaction) {
-    console.log(this.option);
+
+    this.selectTransactionComponent.toggleSelectDropDown();
+    this.selectTransactionComponent.changeSelectedItem(optionChoiced.select);
 
     this.optionChosen = optionChoiced;
 
     this.registerTransaction.textArea.nativeElement.value = optionChoiced.description;
     this.registerTransaction.textArea.nativeElement.toched;
     this.registerTransaction.textArea.nativeElement.dirty;
+
+    console.log(optionChoiced);
+
+    if (this.registerTransaction.transactionType.nativeElement.value === "input") {
+      this.registerTransaction.transactionSelect = "input";
+    } else {
+      this.registerTransaction.transactionSelect = "output";
+    }
   }
 }

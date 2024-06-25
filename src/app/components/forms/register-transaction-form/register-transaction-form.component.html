@@ -4,10 +4,21 @@
         <app-select-transaction style="width: 100%;"></app-select-transaction>
         <div class="field-box">
             <label for="type">Tipo</label>
-            <select name="type" formControlName="type">
-                <option value="input">Entrada</option>
-                <option value="output">Saída</option>
-            </select>
+            <div role="select" class="type-bar" id="type-id">
+                <div class="type-btn" (click)="toggleOpenTypeMenu()">
+                    <span>{{handleChangeTypeMenu()}}</span>
+                    <span class="material-symbols-outlined" *ngIf="openedTypeMenu">
+                        stat_1
+                    </span>
+                    <span class="material-symbols-outlined" *ngIf="!openedTypeMenu">
+                        stat_minus_1
+                    </span>
+                </div>
+                <div class="select-content" *ngIf="openedTypeMenu">
+                    <span (click)="setInputTransaction()">Entrada</span>
+                    <span (click)="setOutputTransaction()">Saída</span>
+                </div>
+            </div>
         </div>
         <app-field-box style="width: 100%;"
             [error]="(financesForm.get('value')?.dirty || financesForm.get('value')?.touched) ? errors.value : null">

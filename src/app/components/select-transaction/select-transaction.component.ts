@@ -30,7 +30,6 @@ export class SelectTransactionComponent {
   @ViewChild("selectContent") transactionMenu!: ElementRef;
   @Input() transactionOptions = this.getSearchTransactionList();
 
-
   constructor(private renderer: Renderer2) {
 
     let count: number = 0;
@@ -57,6 +56,12 @@ export class SelectTransactionComponent {
 
   public toggleSelectDropDown(): void {
     this.openedSelectMenu = !this.openedSelectMenu;
+  }
+
+  public selectedItem: String = "Selecione uma Transação";
+
+  public changeSelectedItem(newSelectedItem: String): void {
+    this.selectedItem = newSelectedItem;
   }
 
   public filterFields(): void {
@@ -127,7 +132,6 @@ export class SelectTransactionComponent {
       const searchedOption: IChoseSearchTransaction = {
         ...option,
         firstString,
-        // searchString: this.searchWord!,
         searchString,
         lastString
       }
