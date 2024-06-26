@@ -38,10 +38,10 @@ export class OptionTransactionComponent {
 
     console.log(optionChoiced);
 
-    if (this.registerTransaction.transactionType.nativeElement.value === "input") {
-      this.registerTransaction.transactionSelect = "input";
+    if (optionChoiced.type === "input") {
+      this.registerTransaction.setInputTransaction();
     } else {
-      this.registerTransaction.transactionSelect = "output";
+      this.registerTransaction.setOutputTransaction();
     }
   }
 }
