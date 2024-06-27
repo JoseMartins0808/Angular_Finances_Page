@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TransactionService } from '../../../services/transaction.service';
 import { CommonModule } from '@angular/common';
@@ -21,7 +21,17 @@ export class RegisterTransactionFormComponent {
   public transactionSelect: "input" | "output" = "input";
   public openedTypeMenu: boolean = false;
 
-  constructor(private readonly transactionService: TransactionService) { }
+  constructor(private readonly transactionService: TransactionService,
+    private renderer: Renderer2) {
+
+    this.renderer.listen("window", "click", (event: Event) => {
+      if (this.openedTypeMenu === true) {
+        if (!this.transactionType.nativeElement.contains(event.target)) {
+          this.openedTypeMenu = false;
+        }
+      }
+    });
+  }
 
   public financesForm = new FormGroup({
     value: new FormControl<string>("", [Validators.required]),
@@ -66,9 +76,13 @@ export class RegisterTransactionFormComponent {
 
   public setInputTransaction(): void {
     this.transactionSelect = "input";
+    if (this.openedTypeMenu === true)
+      this.openedTypeMenu = false;
   }
 
   public setOutputTransaction(): void {
     this.transactionSelect = "output";
+    if (this.openedTypeMenu === true)
+      this.openedTypeMenu = false;
   }
 }

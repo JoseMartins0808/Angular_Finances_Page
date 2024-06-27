@@ -4,7 +4,7 @@
         <app-select-transaction style="width: 100%;"></app-select-transaction>
         <div class="field-box">
             <label for="type">Tipo</label>
-            <div role="select" class="type-bar" id="type-id" style="position: relative;">
+            <div role="select" class="type-bar" id="type-id" style="position: relative;" #transactionType>
                 <div class="type-btn" (click)="toggleOpenTypeMenu()">
                     <span>{{handleChangeTypeMenu()}}</span>
                     <span class="material-symbols-outlined" *ngIf="openedTypeMenu">
@@ -14,7 +14,7 @@
                         stat_minus_1
                     </span>
                 </div>
-                <div class="type-content" *ngIf="openedTypeMenu">
+                <div class=" type-content" *ngIf="openedTypeMenu">
                     <span (click)="setInputTransaction()">Entrada</span>
                     <span (click)="setOutputTransaction()">Saída</span>
                 </div>
