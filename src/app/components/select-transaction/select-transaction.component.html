@@ -1,15 +1,16 @@
 <label for="select-id" class="select-label">Transação</label>
 <div role="select" class="select-bar" id="select-id">
-    <div class="select-btn" (click)="!openedSelectMenu ? toggleSelectDropDown() : null">
+    <div class="select-btn" (click)="toggleSelectDropDown()" style="position: relative;" #selectBar>
         <span>{{selectedItem}}</span>
-        <span class="material-symbols-outlined" *ngIf="openedSelectMenu">
-            stat_1
+        <span class="material-symbols-outlined">
+            {{toggleSelectDropDownIcon()}}
         </span>
-        <span class="material-symbols-outlined" *ngIf="!openedSelectMenu">
+        <!-- <span class=" material-symbols-outlined" *ngIf="!openedSelectMenu" #dropUpIcon>
             stat_minus_1
-        </span>
+        </span> -->
+
     </div>
-    <div class="select-content" *ngIf="openedSelectMenu" #selectContent>
+    <div class=" select-content" *ngIf="openedSelectMenu" #selectContent>
         <input type="text" #transactionInput (keyup)="filterFields()">
         <ul class="options">
             <app-option-transaction style="width: 100%;" *ngFor="let option of transactionOptions"

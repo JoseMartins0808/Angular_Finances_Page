@@ -28,35 +28,45 @@ export class SelectTransactionComponent {
 
   @ViewChild("transactionInput") transactionSearch!: ElementRef;
   @ViewChild("selectContent") transactionMenu!: ElementRef;
+  @ViewChild("selectBar") selectBar!: ElementRef;
+  // @ViewChild("dropDownIcon") dropDownIcon!: ElementRef;
+  // @ViewChild("dropUpIcon") dropUpIcon!: ElementRef;
   @Input() transactionOptions = this.getSearchTransactionList();
 
   constructor(private renderer: Renderer2) {
 
-    let count: number = 0;
-
-    this.renderer.listen("window", "click", (e: Event) => {
+    this.renderer.listen("window", "click", (event: Event) => {
 
       if (this.openedSelectMenu === true) {
 
-        if (!this.transactionMenu.nativeElement.contains(e.target)) {
-          count = count + 1;
+        if (!this.transactionMenu.nativeElement.contains(event.target) && !this.selectBar.nativeElement.contains(event.target)) {
+          // if (this.dropDownIcon.nativeElement.contains(event.target)) {
+          //   console.log("CLOSE!")
+          // }
 
-          if (count === 2) {
-            this.toggleSelectDropDown();
-            count = 0;
-          }
+          this.openedSelectMenu = false;
         }
+
+      }
+
+
+      if (this.selectBar.nativeElement.contains(event.target)) {
+        console.log("DRENTO")
       }
     });
   }
-
   public openedSelectMenu: boolean = false;
 
   public searchWord: string | null = null;
 
   public toggleSelectDropDown(): void {
     this.openedSelectMenu = !this.openedSelectMenu;
+    console.log("TOGGLE!")
   }
+
+  public toggleSelectDropDownIcon(): "stat_1" | "stat_minus_1" {
+    return this.openedSelectMenu ? "stat_1" : "stat_minus_1";
+  };
 
   public selectedItem: String = "Selecione uma Transação";
 
