@@ -5,10 +5,6 @@
         <span class="material-symbols-outlined">
             {{toggleSelectDropDownIcon()}}
         </span>
-        <!-- <span class=" material-symbols-outlined" *ngIf="!openedSelectMenu" #dropUpIcon>
-            stat_minus_1
-        </span> -->
-
     </div>
     <div class=" select-content" *ngIf="openedSelectMenu" #selectContent>
         <input type="text" #transactionInput (keyup)="filterFields()">

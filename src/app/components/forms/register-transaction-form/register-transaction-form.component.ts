@@ -74,6 +74,10 @@ export class RegisterTransactionFormComponent {
     return this.transactionSelect === "input" ? "Entrada" : "Saída";
   }
 
+  public handleChangeIconMenu(): "stat_minus_1" | "stat_1" {
+    return this.openedTypeMenu ? "stat_1" : "stat_minus_1";
+  }
+
   public setInputTransaction(): void {
     this.transactionSelect = "input";
     if (this.openedTypeMenu === true)

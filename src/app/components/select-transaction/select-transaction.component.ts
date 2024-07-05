@@ -40,18 +40,9 @@ export class SelectTransactionComponent {
       if (this.openedSelectMenu === true) {
 
         if (!this.transactionMenu.nativeElement.contains(event.target) && !this.selectBar.nativeElement.contains(event.target)) {
-          // if (this.dropDownIcon.nativeElement.contains(event.target)) {
-          //   console.log("CLOSE!")
-          // }
-
           this.openedSelectMenu = false;
         }
 
-      }
-
-
-      if (this.selectBar.nativeElement.contains(event.target)) {
-        console.log("DRENTO")
       }
     });
   }
@@ -61,7 +52,6 @@ export class SelectTransactionComponent {
 
   public toggleSelectDropDown(): void {
     this.openedSelectMenu = !this.openedSelectMenu;
-    console.log("TOGGLE!")
   }
 
   public toggleSelectDropDownIcon(): "stat_1" | "stat_minus_1" {

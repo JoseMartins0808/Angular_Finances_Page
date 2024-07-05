@@ -7,11 +7,8 @@
             <div role="select" class="type-bar" id="type-id" style="position: relative;" #transactionType>
                 <div class="type-btn" (click)="toggleOpenTypeMenu()">
                     <span>{{handleChangeTypeMenu()}}</span>
-                    <span class="material-symbols-outlined" *ngIf="openedTypeMenu">
-                        stat_1
-                    </span>
-                    <span class="material-symbols-outlined" *ngIf="!openedTypeMenu">
-                        stat_minus_1
+                    <span class="material-symbols-outlined">
+                        {{handleChangeIconMenu()}}
                     </span>
                 </div>
                 <div class=" type-content" *ngIf="openedTypeMenu">
