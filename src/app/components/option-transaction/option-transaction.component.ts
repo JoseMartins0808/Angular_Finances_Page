@@ -28,7 +28,6 @@ export class OptionTransactionComponent {
   public setOptionChoiced(optionChoiced: IChoseTransaction) {
 
     if (this.selectTransactionComponent.openedSelectMenu === true) {
-      console.log("CONSOLE")
       this.selectTransactionComponent.toggleSelectDropDown();
     }
 
@@ -37,6 +36,7 @@ export class OptionTransactionComponent {
     this.optionChosen = optionChoiced;
 
     this.registerTransaction.textArea.nativeElement.value = optionChoiced.description;
+    this.registerTransaction.transactionDesciption = optionChoiced.description;
     this.registerTransaction.textArea.nativeElement.toched;
     this.registerTransaction.textArea.nativeElement.dirty;
 

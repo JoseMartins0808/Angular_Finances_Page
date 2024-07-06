@@ -29,8 +29,8 @@
     <app-field-box style="width: 100%;"
         [error]="(financesForm.get('description')?.dirty || financesForm.get('description')?.touched) ? errors.description : null">
         <label for="description">Descrição</label>
-        <textarea name="description" placeholder="Digite a descrição" formControlName="description"
-            #textArea></textarea>
+        <textarea name="description" placeholder="Digite a descrição" formControlName="description" #textArea
+            (keyup)="handleTransactionDescription()"></textarea>
         <app-error style="position: relative;"
             *ngIf="errors?.description?.['required'] && (financesForm.get('description')?.dirty || financesForm.get('description')?.touched)">
             A descrição é obrigatória</app-error>

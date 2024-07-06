@@ -20,6 +20,7 @@ export class RegisterTransactionFormComponent {
 
   public transactionSelect: "input" | "output" = "input";
   public openedTypeMenu: boolean = false;
+  public transactionDesciption: string = "";
 
   constructor(private readonly transactionService: TransactionService,
     private renderer: Renderer2) {
@@ -52,7 +53,8 @@ export class RegisterTransactionFormComponent {
     const newData = {
       value: this.financesForm.get("value")?.value as string,
       type: this.transactionSelect,
-      description: this.financesForm.get("description")?.value as string
+      // description: this.financesForm.get("description")?.value as string
+      description: this.transactionDesciption
     }
 
     this.transactionService.addTransaction(newData);
@@ -88,5 +90,9 @@ export class RegisterTransactionFormComponent {
     this.transactionSelect = "output";
     if (this.openedTypeMenu === true)
       this.openedTypeMenu = false;
+  }
+
+  public handleTransactionDescription() {
+    this.transactionDesciption = this.textArea.nativeElement.value;
   }
 }
