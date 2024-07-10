@@ -38,11 +38,36 @@
     background-color: white
     width: 100%
     transition: .5s
+    max-height: 200px
+    overflow-y: auto
+
+    & p
+        display: flex
+        align-content: center
+        justify-content: center
+        flex-wrap: wrap
+        height: 2.875rem
+        border-radius: 3px
+        border: 1px solid #F5F5F5
+        cursor: pointer
+        width: 100%
+        background: white
+        font-family: "Montserrat", sans-serif
+        font-size: 0.875rem
+        font-weight: 400
+        color: #000
+        border: 1px solid #F5F5F5
+        margin-bottom: 5px
+        transition: .5s ease
+
+        &:hover
+            background-color: #F5F5F5
 
     & input
         width: 100%
         padding: 3px
         width: 100%
+        font-size: 1rem
         margin-bottom: 5px
         outline: 0
         border: 1px solid gray
@@ -52,6 +77,14 @@
         overflow: auto
         height: 100%
 
+.input-content
+    position: relative
+
+    & span
+        position: absolute
+        top: 0
+        right: 0
+        
 .options li
     cursor: pointer
     overflow: hidden

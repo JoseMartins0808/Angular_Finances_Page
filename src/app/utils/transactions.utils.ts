@@ -17,14 +17,14 @@ export const transactionList: IChoseTransaction[] = [
         description: "Conta mensal de água."
     },
     {
-        select: "Luz",
-        type: "output",
-        description: "Conta mensal de luz."
-    },
-    {
         select: "Salário",
         type: "input",
         description: "Salário mensal."
+    },
+    {
+        select: "Luz",
+        type: "output",
+        description: "Conta mensal de luz."
     },
     {
         select: "Vale alimentação",
@@ -32,19 +32,14 @@ export const transactionList: IChoseTransaction[] = [
         description: "Vale alimentação recebido mensalmente."
     },
     {
-        select: "PLR",
-        type: "input",
-        description: "Participação dos lucros e resultados da empresa."
-    },
-    {
-        select: "Aplicação financeira",
-        type: "input",
-        description: "Recebimeto de investimentos em aplicações financeiras."
-    },
-    {
         select: "Aluguel",
         type: "output",
         description: "Aluguel mensal."
+    },
+    {
+        select: "PLR",
+        type: "input",
+        description: "Participação dos lucros e resultados da empresa."
     },
     {
         select: "Cartão de crédito",
@@ -52,19 +47,14 @@ export const transactionList: IChoseTransaction[] = [
         description: "Gastos mensais com cartão de crédito"
     },
     {
+        select: "Aplicação financeira",
+        type: "input",
+        description: "Recebimeto de investimentos em aplicações financeiras."
+    },
+    {
         select: "Dízimo",
         type: "output",
         description: "Doação religiosa."
-    },
-    {
-        select: "Aplicação financeira",
-        type: "output",
-        description: "Depósito de investimentos em aplicações financeiras."
-    },
-    {
-        select: "Alarmes",
-        type: "output",
-        description: "Alarme residencial."
     },
     {
         select: "Venda de Carro",
@@ -72,9 +62,9 @@ export const transactionList: IChoseTransaction[] = [
         description: "Receita de venda de um carro."
     },
     {
-        select: "Compra de Carro",
+        select: "Aplicação financeira",
         type: "output",
-        description: "Despesa assumida por comprar um carro."
+        description: "Depósito de investimentos em aplicações financeiras."
     },
     {
         select: "Venda de Moto",
@@ -82,9 +72,34 @@ export const transactionList: IChoseTransaction[] = [
         description: "Receita de venda de uma moto."
     },
     {
+        select: "Alarmes",
+        type: "output",
+        description: "Alarme residencial."
+    },
+    {
+        select: "Ganho no Poker",
+        type: "input",
+        description: "Valor recebido em jogo de Poker."
+    },
+    {
+        select: "Compra de Carro",
+        type: "output",
+        description: "Despesa assumida por comprar um carro."
+    },
+    {
+        select: "Tarefa Freelancer",
+        type: "input",
+        description: "Valor recebido por concluir uma tarefa realizada como freelancer."
+    },
+    {
         select: "Compra de Moto",
         type: "output",
         description: "Despesa assumida por comprar uma moto."
+    },
+    {
+        select: "Prêmio em Título de Capitalização",
+        type: "input",
+        description: "Valor recebido por sorteio em Título de Capitalização contratado por banco diverso."
     },
     {
         select: "Mensalidade Escolar",
@@ -213,7 +228,7 @@ export const transactionList: IChoseTransaction[] = [
     },
     {
         select: "Acerto do Trabalho",
-        type: "output",
+        type: "input",
         description: "Valor recebido pelo acerto final ao encerrar o Contrato de Trabalho."
     },
     {

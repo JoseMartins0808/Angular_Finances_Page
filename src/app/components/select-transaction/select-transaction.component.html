@@ -6,8 +6,12 @@
             {{toggleSelectDropDownIcon()}}
         </span>
     </div>
-    <div class=" select-content" *ngIf="openedSelectMenu" #selectContent>
-        <input type="text" #transactionInput (keyup)="filterFields()">
+    <div class="select-content" *ngIf="openedSelectMenu" #selectContent>
+        <p>Outros (livre)</p>
+        <div class="input-content"><input type="text" #transactionInput (keyup)="filterFields()"><span
+                class="material-symbols-outlined">
+                search
+            </span></div>
         <ul class="options">
             <app-option-transaction style="width: 100%;" *ngFor="let option of transactionOptions"
                 [option]="option"></app-option-transaction>
