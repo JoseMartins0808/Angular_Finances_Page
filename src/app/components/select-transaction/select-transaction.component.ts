@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, HostListener, Input, Renderer2, ViewChild } from '@angular/core';
 import { IChoseSearchTransaction, IChoseTransaction, transactionList } from "../../utils/transactions.utils";
 import { OptionTransactionComponent } from '../option-transaction/option-transaction.component';
+import { RegisterTransactionFormComponent } from '../forms/register-transaction-form/register-transaction-form.component';
+import { tick } from '@angular/core/testing';
 
 @Component({
   selector: 'app-select-transaction',
@@ -33,7 +35,8 @@ export class SelectTransactionComponent {
   // @ViewChild("dropUpIcon") dropUpIcon!: ElementRef;
   @Input() transactionOptions = this.getSearchTransactionList();
 
-  constructor(private renderer: Renderer2) {
+  constructor(private renderer: Renderer2,
+    private readonly registerTansactionFormComponent: RegisterTransactionFormComponent) {
 
     this.renderer.listen("window", "click", (event: Event) => {
 
@@ -50,8 +53,15 @@ export class SelectTransactionComponent {
 
   public searchWord: string | null = null;
 
-  public toggleSelectDropDown(): void {
+  public async toggleSelectDropDown(): Promise<void> {
     this.openedSelectMenu = !this.openedSelectMenu;
+    setTimeout(() => {
+      if (this.openedSelectMenu === true) {
+
+        this.transactionSearch.nativeElement.value = this.searchWord;
+      }
+    }, 10);
+
   }
 
   public toggleSelectDropDownIcon(): "stat_1" | "stat_minus_1" {
@@ -137,8 +147,25 @@ export class SelectTransactionComponent {
       }
 
       searchTransactionList.push(searchedOption);
+
+      this.transactionSearch.nativeElement.value = this.searchWord;
     });
 
     this.transactionOptions = searchTransactionList;
   }
+
+  public setAnyTransaction(): void {
+    this.registerTansactionFormComponent.isAnyTransaction = true;
+  }
+
+
+
+  // public getInputPlaceholder(): string {
+  //   console.log(this.searchWord)
+  //   if (this.searchWord === "" || this.searchWord === null) {
+  //     return "digite a procura";
+  //   } else {
+  //     return this.searchWord as string;
+  //   }
+  // }
 }

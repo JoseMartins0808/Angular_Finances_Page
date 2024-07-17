@@ -32,7 +32,7 @@ export class OptionTransactionComponent {
     }
 
     this.selectTransactionComponent.changeSelectedItem(optionChoiced.select);
-
+    this.registerTransaction.isAnyTransaction = false;
     this.optionChosen = optionChoiced;
 
     this.registerTransaction.textArea.nativeElement.value = optionChoiced.description;

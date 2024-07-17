@@ -21,6 +21,7 @@ export class RegisterTransactionFormComponent {
   public transactionSelect: "input" | "output" = "input";
   public openedTypeMenu: boolean = false;
   public transactionDesciption: string = "";
+  public isAnyTransaction: boolean = true;
 
   constructor(private readonly transactionService: TransactionService,
     private renderer: Renderer2) {
@@ -61,11 +62,19 @@ export class RegisterTransactionFormComponent {
   }
 
   public handleDisableButton(): boolean {
-    return this.financesForm.valid ? false : true;
+    if (this.isAnyTransaction) {
+      return this.financesForm.valid ? false : true;
+    } else {
+      return false;
+    }
   }
 
   public handleDisableButtonStyle(): "btn disabled md" | "btn solid md" {
-    return this.financesForm.valid ? "btn solid md" : "btn disabled md";
+    if (this.isAnyTransaction) {
+      return this.financesForm.valid ? "btn solid md" : "btn disabled md";
+    } else {
+      return "btn solid md";
+    }
   }
 
   public toggleOpenTypeMenu(): void {
