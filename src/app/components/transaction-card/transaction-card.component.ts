@@ -22,4 +22,8 @@ export class TransactionCardComponent {
   public deleteTransaction() {
     this.transactionService.removeTransaction(this.transaction.id);
   }
+
+  public showTransaction() {
+    console.log(this.transaction);
+  }
 }

@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ErrorComponent } from '../../../error/error/error.component';
 import { FieldBoxComponent } from '../field-box/field-box.component';
 import { SelectTransactionComponent } from '../../select-transaction/select-transaction.component';
+import { ICreateTransaction } from '../../../interfaces/transaction.interfaces';
 
 @Component({
   selector: 'app-register-transaction-form',
@@ -18,10 +19,11 @@ export class RegisterTransactionFormComponent {
   @ViewChild("textArea") textArea!: ElementRef;
   @ViewChild("transactionType") transactionType!: ElementRef;
 
-  public transactionSelect: "input" | "output" = "input";
+  public transactionTypeSelect: "input" | "output" = "input";
   public openedTypeMenu: boolean = false;
   public transactionDesciption: string = "";
   public isAnyTransaction: boolean = true;
+  public optionSelected: string = "Outros (livre)";
 
   constructor(private readonly transactionService: TransactionService,
     private renderer: Renderer2) {
@@ -51,13 +53,15 @@ export class RegisterTransactionFormComponent {
   public onSubmit(event: Event): void {
     event.preventDefault();
 
-    const newData = {
+    const newData: ICreateTransaction = {
       value: this.financesForm.get("value")?.value as string,
-      type: this.transactionSelect,
-      // description: this.financesForm.get("description")?.value as string
+      type: this.transactionTypeSelect,
+      option: this.optionSelected,
+      datetime: new Date().toLocaleString(),
       description: this.transactionDesciption
     }
 
+    console.log(newData);
     this.transactionService.addTransaction(newData);
   }
 
@@ -82,7 +86,7 @@ export class RegisterTransactionFormComponent {
   }
 
   public handleChangeTypeMenu(): "Entrada" | "Saída" {
-    return this.transactionSelect === "input" ? "Entrada" : "Saída";
+    return this.transactionTypeSelect === "input" ? "Entrada" : "Saída";
   }
 
   public handleChangeIconMenu(): "stat_minus_1" | "stat_1" {
@@ -90,13 +94,13 @@ export class RegisterTransactionFormComponent {
   }
 
   public setInputTransaction(): void {
-    this.transactionSelect = "input";
+    this.transactionTypeSelect = "input";
     if (this.openedTypeMenu === true)
       this.openedTypeMenu = false;
   }
 
   public setOutputTransaction(): void {
-    this.transactionSelect = "output";
+    this.transactionTypeSelect = "output";
     if (this.openedTypeMenu === true)
       this.openedTypeMenu = false;
   }

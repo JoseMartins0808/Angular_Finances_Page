@@ -31,8 +31,6 @@ export class SelectTransactionComponent {
   @ViewChild("transactionInput") transactionSearch!: ElementRef;
   @ViewChild("selectContent") transactionMenu!: ElementRef;
   @ViewChild("selectBar") selectBar!: ElementRef;
-  // @ViewChild("dropDownIcon") dropDownIcon!: ElementRef;
-  // @ViewChild("dropUpIcon") dropUpIcon!: ElementRef;
   @Input() transactionOptions = this.getSearchTransactionList();
 
   constructor(private renderer: Renderer2,
@@ -45,7 +43,6 @@ export class SelectTransactionComponent {
         if (!this.transactionMenu.nativeElement.contains(event.target) && !this.selectBar.nativeElement.contains(event.target)) {
           this.openedSelectMenu = false;
         }
-
       }
     });
   }
@@ -53,15 +50,15 @@ export class SelectTransactionComponent {
 
   public searchWord: string | null = null;
 
-  public async toggleSelectDropDown(): Promise<void> {
+  public toggleSelectDropDown(): void {
     this.openedSelectMenu = !this.openedSelectMenu;
+
     setTimeout(() => {
       if (this.openedSelectMenu === true) {
 
         this.transactionSearch.nativeElement.value = this.searchWord;
       }
-    }, 10);
-
+    }, 40);
   }
 
   public toggleSelectDropDownIcon(): "stat_1" | "stat_minus_1" {
@@ -148,7 +145,6 @@ export class SelectTransactionComponent {
 
       searchTransactionList.push(searchedOption);
 
-      this.transactionSearch.nativeElement.value = this.searchWord;
     });
 
     this.transactionOptions = searchTransactionList;
@@ -156,16 +152,14 @@ export class SelectTransactionComponent {
 
   public setAnyTransaction(): void {
     this.registerTansactionFormComponent.isAnyTransaction = true;
+
+    this.searchWord = "";
+
+    this.selectedItem = "Outros (livre)";
+
+    this.transactionOptions = this.getSearchTransactionList();
+
+    if (this.openedSelectMenu === true)
+      this.openedSelectMenu = false;
   }
-
-
-
-  // public getInputPlaceholder(): string {
-  //   console.log(this.searchWord)
-  //   if (this.searchWord === "" || this.searchWord === null) {
-  //     return "digite a procura";
-  //   } else {
-  //     return this.searchWord as string;
-  //   }
-  // }
 }

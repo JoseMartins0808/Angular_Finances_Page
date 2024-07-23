@@ -2,22 +2,51 @@
     
 .flex-box
     display: flex
+    flex-direction: row
     align-items: center
     justify-content: space-between
     gap: 20px
     flex-wrap: wrap
 
     .left
-        p
-            margin-top: 12px
+        display: flex
+        flex-direction: column
+        gap: 20px
+        // width: 80%
+
+        & .card-title
+            font-size: 1.5rem
+            font-weight: 500
+
+        & .red-title
+            color: $color-red
+
+        & .blue-title
+            color: $color-blue-1
 
     .right
+
+
+        & div
+            display: flex
+            align-items: center
+            gap: 10px
+
         display: flex
-        align-items: center
-        gap: 12px
+        flex-direction: column
+        align-items: right
+        gap: 20px
 
         .paragraph
             text-transform: capitalize
+
+        & .red-type
+            color: $color-red
+
+        & .blue-type
+            color: $color-blue-1
+
+        
 
         button
             color: $color-blue-1

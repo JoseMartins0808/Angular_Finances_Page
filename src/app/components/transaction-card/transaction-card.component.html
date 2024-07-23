@@ -1,18 +1,22 @@
-<li class="box">
+<li class="box" (click)="showTransaction()">
     <div class="flex-box">
         <div class="left">
-            <span *ngIf="transaction.type === 'input'" class="money blue">{{valueToMoney()}}</span>
-            <span *ngIf="transaction.type === 'output'" class="money red">-{{valueToMoney()}}</span>
+            <p *ngIf="transaction.type === 'input'" class="card-title blue-title paragraph">{{transaction.option}}</p>
+            <p *ngIf="transaction.type === 'output'" class="card-title red-title paragraph">{{transaction.option}}</p>
             <p class="paragraph">{{transaction.description}}</p>
         </div>
         <div class="right">
-            <span *ngIf="transaction.type === 'input'" class="paragraph">Entrada/Receita</span>
-            <span *ngIf="transaction.type === 'output'" class="paragraph">Saída/Despesa</span>
-            <button (click)="deleteTransaction()">
-                <span class="material-symbols-outlined">
-                    delete
-                </span>
-            </button>
+            <div>
+                <span *ngIf="transaction.type === 'input'" class="paragraph">Entrada/Receita</span>
+                <span *ngIf="transaction.type === 'output'" class="paragraph">Saída/Despesa</span>
+                <button (click)="deleteTransaction()">
+                    <span class="material-symbols-outlined">
+                        delete
+                    </span>
+                </button>
+            </div>
+            <span *ngIf="transaction.type === 'input'" class="money blue">{{valueToMoney()}}</span>
+            <span *ngIf="transaction.type === 'output'" class="money red">-{{valueToMoney()}}</span>
         </div>
     </div>
 </li>
