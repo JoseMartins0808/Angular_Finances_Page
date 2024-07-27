@@ -15,8 +15,8 @@
                     </span>
                 </button>
             </div>
-            <span *ngIf="transaction.type === 'input'" class="money blue">{{valueToMoney()}}</span>
-            <span *ngIf="transaction.type === 'output'" class="money red">-{{valueToMoney()}}</span>
+            <p *ngIf="transaction.type === 'input'" class="money blue">{{valueToMoney()}}</p>
+            <p *ngIf="transaction.type === 'output'" class="money red">-{{valueToMoney()}}</p>
         </div>
     </div>
 </li>

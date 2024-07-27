@@ -15,15 +15,15 @@ export class TransactionCardComponent {
 
   @Input() transaction!: ITransaction;
 
-  public valueToMoney() {
+  public valueToMoney(): string {
     return Number(this.transaction.value).toLocaleString("pt-BR", { currency: "BRL", style: "currency" })
   }
 
-  public deleteTransaction() {
+  public deleteTransaction(): void {
     this.transactionService.removeTransaction(this.transaction.id);
   }
 
-  public showTransaction() {
+  public showTransaction(): void {
     console.log(this.transaction);
   }
 }
