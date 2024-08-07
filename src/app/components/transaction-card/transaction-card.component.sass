@@ -1,14 +1,62 @@
 @import "../../../styles/global.sass"
-    
+
+.card:hover .flex-box.input:after
+    width: 100%
+    background-color: $color-blue-2
+
+.card:hover .flex-box.output:after
+    width: 100%
+    background-color: $color-red-1
+
+.card:hover .flex-box>.left>p
+    z-index: 1
+
+.card:hover .flex-box>.right>p
+    // border: 2px red solid
+    z-index: 1
+
+.card:hover .flex-box>.right>div
+    z-index: 1
+
+.card:hover .flex-box.output:after
+    width: 100%
+
+.flex-box.input:after 
+    content: ""
+    display: block
+    position: absolute
+    right: 0
+    top: 0
+    width: 4px
+    height: 100%
+    background-color: $color-blue-1
+    opacity: .7
+    transition: .5s
+
+.flex-box.output:after
+    content: ""
+    display: block
+    position: absolute
+    right: 0
+    top: 0
+    width: 4px
+    height: 100%
+    background-color: $color-red
+    opacity: .7
+    transition: .5s
+
 .flex-box
     display: flex
     flex-direction: row
     align-items: center
     justify-content: space-between
     gap: 20px
+    transition: .2s
     // flex-wrap: wrap
+
     @media (max-width: 700px)
         flex-direction: column
+
 
     .left
         display: flex
@@ -56,3 +104,12 @@
 
         button
             color: $color-blue-1
+
+.datetime
+    position: absolute
+    top: 12px
+    left: 0
+    width: 100%
+
+    & p
+      text-align: center  

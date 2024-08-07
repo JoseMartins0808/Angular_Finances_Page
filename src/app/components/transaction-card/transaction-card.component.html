@@ -1,5 +1,5 @@
-<li class="box" (click)="showTransaction()">
-    <div class="flex-box">
+<li class="box card" (click)="showTransaction()" style="position: relative;">
+    <div [class]="handleStylingCard()">
         <div class="left">
             <p *ngIf="transaction.type === 'input'" class="card-title blue-title paragraph">{{transaction.option}}</p>
             <p *ngIf="transaction.type === 'output'" class="card-title red-title paragraph">{{transaction.option}}</p>
@@ -18,5 +18,9 @@
             <p *ngIf="transaction.type === 'input'" class="money blue">{{valueToMoney()}}</p>
             <p *ngIf="transaction.type === 'output'" class="money red">-{{valueToMoney()}}</p>
         </div>
+    </div>
+    <div class="datetime">
+        <p>Criado em <span style="color: blue;">{{transactionDate}}</span>, às <span
+                style="color: red;">{{transactionTime}}</span></p>
     </div>
 </li>

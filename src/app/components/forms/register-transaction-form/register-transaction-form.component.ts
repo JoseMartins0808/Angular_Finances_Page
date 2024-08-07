@@ -24,9 +24,12 @@ export class RegisterTransactionFormComponent {
   public transactionDesciption: string = "";
   public isAnyTransaction: boolean = true;
   public optionSelected: string = "Outros (livre)";
+  public dateTimeString: string = "";
 
   constructor(private readonly transactionService: TransactionService,
     private renderer: Renderer2) {
+
+    this.createDefaultTransaction();
 
     this.renderer.listen("window", "click", (event: Event) => {
       if (this.openedTypeMenu === true) {
@@ -61,9 +64,19 @@ export class RegisterTransactionFormComponent {
       description: this.transactionDesciption
     }
 
-    console.log(newData);
     this.transactionService.addTransaction(newData);
   }
+
+  private createDefaultTransaction() {
+    this.transactionService.addTransaction({
+      value: "250",
+      type: "input",
+      option: "Outros (livre)",
+      datetime: new Date().toLocaleString(),
+      description: "Uma transação padrão."
+    });
+  }
+
 
   public handleDisableButton(): boolean {
     if (this.isAnyTransaction) {
