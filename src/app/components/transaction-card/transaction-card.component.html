@@ -6,10 +6,10 @@
             <p class="paragraph">{{transaction.description}}</p>
         </div>
         <div class="right">
-            <div>
+            <div (click)="deleteTransaction()">
                 <span *ngIf="transaction.type === 'input'" class="paragraph">Entrada/Receita</span>
                 <span *ngIf="transaction.type === 'output'" class="paragraph">Saída/Despesa</span>
-                <button (click)="deleteTransaction()">
+                <button>
                     <span class="material-symbols-outlined">
                         delete
                     </span>
@@ -20,7 +20,6 @@
         </div>
     </div>
     <div class="datetime">
-        <p>Criado em <span style="color: blue;">{{transactionDate}}</span>, às <span
-                style="color: red;">{{transactionTime}}</span></p>
+        <span>Criado em {{transactionDate}}, às {{transactionTime}}</span>
     </div>
 </li>

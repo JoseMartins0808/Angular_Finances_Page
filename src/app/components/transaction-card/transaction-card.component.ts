@@ -56,12 +56,10 @@ export class TransactionCardComponent {
         return day + " de " + monthSpell + " de " + year;
       }
 
-
       this.transactionDate = getTransactionDate(this.transaction.datetime);
 
       this.transactionTime = this.transaction.datetime.slice(12, this.transaction.datetime.length);
     }, 10);
-
   }
 
 

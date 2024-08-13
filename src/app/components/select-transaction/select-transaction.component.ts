@@ -159,6 +159,8 @@ export class SelectTransactionComponent {
 
     this.transactionOptions = this.getSearchTransactionList();
 
+    this.registerTansactionFormComponent.textArea.nativeElement.value = "";
+
     if (this.openedSelectMenu === true)
       this.openedSelectMenu = false;
   }

@@ -27,8 +27,6 @@ export class OptionTransactionComponent {
 
   public setOptionChoiced(optionChoiced: IChoseTransaction) {
 
-    console.log(optionChoiced);
-
     if (this.selectTransactionComponent.openedSelectMenu === true) {
       this.selectTransactionComponent.toggleSelectDropDown();
     }
