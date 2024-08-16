@@ -13,10 +13,14 @@
             <span class="material-symbols-outlined">
                 search
             </span>
+            <p (click)="clearSearchInput()" *ngIf="transactionOptions.length === 0">Não
+                encontrado<span>{{searchWord}}</span></p>
         </div>
         <ul class="options">
-            <app-option-transaction style="width: 100%;" *ngFor="let option of transactionOptions"
-                [option]="option"></app-option-transaction>
+            <ng-container *ngIf="transactionOptions.length !== 0">
+                <app-option-transaction style="width: 100%;" *ngFor="let option of transactionOptions"
+                    [option]="option"></app-option-transaction>
+            </ng-container>
         </ul>
     </div>
 </div>

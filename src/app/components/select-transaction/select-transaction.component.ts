@@ -31,6 +31,7 @@ export class SelectTransactionComponent {
   @ViewChild("transactionInput") transactionSearch!: ElementRef;
   @ViewChild("selectContent") transactionMenu!: ElementRef;
   @ViewChild("selectBar") selectBar!: ElementRef;
+  @ViewChild("clearInput") clearInput!: ElementRef | null;
   @Input() transactionOptions = this.getSearchTransactionList();
 
   constructor(private renderer: Renderer2,
@@ -39,8 +40,19 @@ export class SelectTransactionComponent {
     this.renderer.listen("window", "click", (event: Event) => {
 
       if (this.openedSelectMenu === true) {
+        // if (this.transactionMenu.nativeElement.contains(event.target)) {
+        //   console.log("DRENTO");
+        // }
 
         if (!this.transactionMenu.nativeElement.contains(event.target) && !this.selectBar.nativeElement.contains(event.target)) {
+          if (this.clearInput !== null) {
+
+            console.log("olá");
+            if (!this.clearInput.nativeElement.contains(event.target)) {
+              this.openedSelectMenu = false;
+            }
+          }
+          console.log("fechou!");
           this.openedSelectMenu = false;
         }
       }
@@ -163,5 +175,14 @@ export class SelectTransactionComponent {
 
     if (this.openedSelectMenu === true)
       this.openedSelectMenu = false;
+  }
+
+  public clearSearchInput(): void {
+
+    this.searchWord = "";
+
+    this.transactionOptions = this.getSearchTransactionList();
+
+    // this.openedSelectMenu = true;
   }
 }
